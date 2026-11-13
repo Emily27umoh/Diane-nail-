@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <title>Daine website</title>
+  <script src="https://kit.fontawesome.com/7a130faa77.js" crossorigin="anonymous"></script>
+</head>
+<style>
+  body{
+    width: 100%;
+    height: 100vh;    
+  }
+  
+  @keyframes slideInLeft {
+    0%   { opacity: 0; transform: translateX(-80px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight {
+    0%   { opacity: 0; transform: translateX(80px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-left {
+    animation: slideInLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  .animate-slide-right {
+    animation: slideInRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  /*parallax*/
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes lineGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .anim-fade-up  { animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) forwards; opacity: 0; }
+  .anim-fade-in  { animation: fadeIn 1.2s ease forwards; opacity: 0; }
+  .anim-line     { animation: lineGrow 1s cubic-bezier(0.22,1,0.36,1) forwards; transform-origin: left; }
+  .delay-200  { animation-delay: 0.2s; }
+  .delay-400  { animation-delay: 0.4s; }
+  .delay-600  { animation-delay: 0.6s; }
+  .delay-800  { animation-delay: 0.8s; }
+  .delay-1000 { animation-delay: 1.0s; }
+  .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+  .font-jost      { font-family: 'Jost', sans-serif; }
+  .divider-line {height: 1px; background: linear-gradient(to right, transparent, rgba(244,194,194,0.6), transparent);}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  .image-track {animation: slide 25s linear infinite;}
+.image-track:hover {animation-play-state: paused;}
+  @keyframes slide {from {transform: translateX(0);} 
+    to {transform: translateX(-50%); }}
+    /*----story animation*/
+    .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+<body class="m-0 p-0 font-serif">
+    <div class="bg-[url('image/parallex1.jpg')] bg-cover bg-center max-h-[400px] object-cover relative">
+        <div class="bg-black/50 min-h-[400px]">
+
+          <!-- Navbar -->
+          <nav class="flex items-center justify-between px-6 py-4 text-white sticky top-0 z-50 " id="navbar">
+
+            <h1 class="text-2xl font-bold tracking-wider scroll-animate">Diane Artistry</h1>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex gap-8 items-center text-sm font-medium">
+              <li><a href="index.html" class="nav-link scroll-animate uppercase font-semibold">Home</a></li>
+
+              <!-- About Dropdown -->
+              <li class="relative group">
+                <a href="about.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  About
+                </a>
+                <div class="dropdown absolute left-0 mt-3 w-44 bg-white border-2 border-pink-500 text-black rounded-2xl shadow-2xl py-4 px-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0">
+                  <a href="story.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase"> Our Story </a>
+                  <a href="team.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">why diane artistry</a>
+                  <a href="artist.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">artist and staff</a>
+                </div>
+              </li>
+
+              <li><a href="menu.html" class="nav-link scroll-animate uppercase font-semibold">Menu</a></li>
+
+              <!-- Services Dropdown -->
+              <li>
+                <a href="services.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  Services
+                </a>
+                
+              </li>
+
+              <li><a href="gallery.html" class="nav-link scroll-animate uppercase font-semibold">Gallery</a></li>
+              <li><a href="booking.html" class="nav-link scroll-animate uppercase font-semibold">Booking</a></li>
+            </ul>
+
+            <button onclick="window.location.href='contact.html'" class="hidden md:block bg-pink-500 hover:bg-pink-600 px-6 py-3 rounded-full transition-all duration-300 font-semibold scroll-animate"> Contact Us</button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-3xl scroll-animate"> ☰ </button>
+          </nav>
+
+          <!-- Mobile Menu -->
+          <div id="mobileMenu" class="fixed inset-0 bg-black text-white z-50 hidden flex-col items-center justify-center space-y-8 text-2xl">
+            <button id="closeMenu" class="absolute top-8 right-8 text-4xl">&times;</button>
+            
+            <a href="index.html" class="hover:text-pink-400 transition">Home</a>
+            <li class="relative group">
+                <a href="about.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  About
+                </a>
+                <div class="dropdown absolute left-0 mt-3 w-54 bg-white border-2 border-pink-500 text-black rounded-2xl shadow-2xl py-4 px-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0">
+                  <a href="story.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase"> Our Story </a>
+                  <a href="team.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">why diane artistry</a>
+                  <a href="artist.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">artist and staff</a>
+                </div>
+              </li>
+            <a href="menu.html" class="hover:text-pink-400 transition">Menu</a>
+             <li class="relative group">
+                <a href="services.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  Services
+                </a>
+                <div class="dropdown absolute left-0 mt-3 w-54 border-2 border-pink-500 bg-white text-black rounded-2xl shadow-2xl py-4 px-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0">
+                  <a href="services.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl">Makeup Artistry</a>
+                  <a href="hair.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl">Hair Styling</a>
+                  <a href="#" class="block px-5 py-3 hover:bg-gray-100 rounded-xl">Bridal Packages</a>
+                  <a href="#" class="block px-5 py-3 hover:bg-gray-100 rounded-xl">Editorial &amp; Photoshoots</a>
+                </div>
+              </li>
+
+            <a href="gallery.html" class="hover:text-pink-400 transition">Gallery</a>
+            <a href="booking.html" class="hover:text-pink-400 transition">Booking</a>
+            
+            <button onclick="window.location.href='contact.html'" class="mt-6 bg-pink-500 px-8 py-4 rounded-full text-lg"> Contact Us </button>
+          </div>
+
+          <section class="flex flex-col items-center justify-center text-center text-white h-[50vh] px-4">
+            <div class="wrapper text-white max-w-2xl">
+              <h2 class="text-3xl md:text-5xl font-bold mb-4 capitalize opacity-0 translate-y-10 fade-in ">why choose diane_artistry</h2>
+            </div>
+          </section>
+        </div>
+    </div>
+
+    <!-- why choose us -->
+     <section class="py-16 px-6" style="width: 100%;">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <!-- Left Column: Hands & Feet -->
+          <div class="space-y-10">
+            <div class="fade-in-bottom opacity-0 translate-y-12 transition-all duration-700 ease-out">
+              <div>
+            <div class="flex items-center gap-3 mb-8 justify-center pt-12">
+              <img src="image/polish5.jpg" alt="" class="rounded-xl border h-[90%] object-cover">
+            </div>
+          </div>
+            </div>
+          </div>
+
+          <div class="space-y-10">
+            <div class="fade-in-bottom opacity-0 translate-y-12 transition-all duration-700 ease-out" style="transition-delay: 150ms;">
+              <div class="lg:pt-16">
+                 <h1 class="text-3xl lg:text-[25px] font-bold text-pink-500 leading-tight mb-6 text-center">Why Choose Diane_Artistry Nail Salon</h1>
+                <h1 class="text-sm lg:text-[18px] font-medium text-zinc-300-tight mb-6 text-center">Beauty, Quality & Excellence in Every Detail</h1>
+                <p class="text-gray-600 leading-relaxed text-justify text-sm max-w-lg pt-4">At Diane_Artistry Nail Salon, we believe that every client deserves exceptional care, beautiful results, and a memorable salon experience. Our commitment to quality, creativity, and customer satisfaction sets us apart and makes us a trusted choice for professional nail services.</p>
+                <p class="text-gray-600 leading-relaxed text-justify text-sm max-w-lg pt-4">Our skilled nail technicians are trained in the latest nail care techniques and design trends. From classic manicures to detailed nail art, we deliver flawless results with precision and creativity.</p>
+                <p class="text-gray-600 leading-relaxed text-justify text-sm maw-w-lg pt-4">We understand that every client is unique. That's why we take the time to understand your preferences and create nail designs that match your personality, lifestyle, and individual style.</p>
+                <p class="text-gray-600 text-justify leading-relaxed text-sm max-w-lg pt-4">We use premium-quality nail products and materials to ensure long-lasting results, beautiful finishes, and healthier nails. Quality is at the heart of every service we provide.We are passionate about making every client happy. From the moment you walk through our doors until you leave, we strive to provide friendly service, professional care, and an experience that exceeds your expectations.</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </section>
+    <section class="video">
+      <div class="max-w-8xl mx-auto pb-10">
+      <video controls class="w-[100%] h-[500px] object-cover  shadow-lg">
+        <source src="video/dianework.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    </section>
+
+    <!-- booking appoinment -->
+     <section class="py-16 px-6 " style="width: 100%;">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div class="space-y-10">
+                  <div class="fade-in-bottom opacity-0 translate-y-12 transition-all duration-700 ease-out"><div>
+                  <div class="flex items-center gap-3 mb-8 justify-center pt-12">
+                     <img src="image/salon1.jpg" alt="" class="rounded-xl border ">
+                   </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="space-y-10 ">
+                   <div class="fade-in-bottom opacity-0 translate-y-12 transition-all duration-700 ease-out" style="transition-delay: 150ms;">
+                      <div class="pt-16">
+                         <h6 class="text-zinc-500 font-semibold uppercase  text-center text-sm">booking now</h6>
+                          <h1 class="text-3xl text-black font-bold capitalize text-center pb-20">make an appointment</h1>
+                        </div>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name </label>
+                                <input type="text" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                                </div>
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name </label>
+                                <input type="text" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address </label>
+                                <input type="email" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                                </div>
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number </label>
+                                <input type="tel" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Select Service</label>
+                                <select required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                                    <option value="">Choose a service</option>
+                                    <option>Manicure</option>
+                                    <option>Pedicure</option>
+                                    <option>Nail Extension</option>
+                                    <option>Gel Polish</option>
+                                    <option>Full Set</option>
+                                </select>
+                                </div>
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Select Staff</label>
+                                <select required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                                    <option value="">Choose staff</option>
+                                    <option>Sarah (Senior)</option>
+                                    <option>Emma</option>
+                                    <option>Olivia</option>
+                                    <option>Mia</option>
+                                </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Date</label>
+                                <input type="date" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-pink-500 transition">
+                            </div>
+
+                            <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-4 rounded-2xl transition-all duration-300 text-lg shadow-md hover:shadow-lg uppercase"> book now </button>
+                        </form>                        
+                    </div>
+                </div>  
+            </div>  
+        </div>
+    </section>
+    <!-----google map-->
+    <section>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.0336459244963!2d3.3801479735041915!3d6.517425323236971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8cf914110501%3A0x849a676d3b2f6d96!2s15%20University%20Rd%2C%20Akoka%2C%20Lagos%20100001%2C%20Lagos!5e0!3m2!1sen!2sng!4v1780609069359!5m2!1sen!2sng" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+
+    <!------footer-->
+    <footer class="bg-zinc-300 text-black">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5 text-center md:text-left">
+            <h1 class="text-2xl font-bold tracking-wider scroll-animate text-pink-500">Diane Artistry</h1>
+            <p class="text-gray-400 max-w-md mx-auto md:mx-0 uppercase text-sm pt-5 pb-5">stay in the know</p>
+            <div class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto md:mx-0">
+              <input type="email" placeholder="your@email.com" class="bg-pink-200 border border-pink-300 rounded-lg sm:rounded-r-none px-4 py-3 text-sm focus:outline-none focus:border-gray-200 w-full">
+              <button class="bg-gray-400 text-white hover:bg-gray-200 transition-colors px-6 py-3 rounded-lg sm:rounded-l-none font-medium whitespace-nowrap uppercase">book now 
+              </button>
+            </div>
+
+            <div class="flex justify-center md:justify-start gap-10 pt-5 mt-6 mx-auto max-w-sm">
+              <a href="#" class="group relative flex flex-col items-center">
+                <img src="icons/instagram (1).png"  class="w-[30px] h-[30px] transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <h5 class="absolute -top-8 text-sm font-medium text-black opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">diane_artistry</h5>
+              </a>
+
+              <a href="#" class="group relative flex flex-col items-center">
+                <img src="icons/tik-tok.png" class="w-[30px] h-[30px] transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                <h5 class="absolute -top-8 text-sm font-medium text-black opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">diane_artistry</h5>
+              </a>
+
+              <a href="#" class="group relative flex flex-col items-center">
+                <img src="icons/whatsapp.png" class="w-[30px] h-[30px] transition-all duration-300 group-hover:scale-110">
+                <h5 class="absolute -top-10 text-sm font-medium font-serif text-black opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">+234-908-599-5848 </h5>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 text-center md:text-left">
+            <h3 class="text-pink-500 font-semibold mb-5 text-lg capitalize">nail salon</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-black transition-colors">About Us</a></li>
+              <li><a href="#" class="hover:text-black transition-colors">menu</a></li>
+              <li><a href="#" class="hover:text-black transition-colors">Blog</a></li>
+              <li><a href="#" class="hover:text-black transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 text-center md:text-left">
+            <h3 class="text-pink-500 font-semibold mb-5 text-lg">Resources</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-black transition-colors capitalize">menicure</a></li>
+              <li><a href="#" class="hover:text-black transition-colors capitalize">pedicure</a></li>
+              <li><a href="#" class="hover:text-black transition-colors capitalize">nails treatment</a></li>
+              <li><a href="#" class="hover:text-black transition-colors capitalize">pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 text-center md:text-left">
+            <h3 class="text-pink-500 font-semibold mb-5 text-lg capitalize">opening hours</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-black transition-colors text-sm  capitalize">SAT - TUE(9AM - 7PM)</a></li>
+              <li><a href="#" class="hover:text-black transition-colors text-sm capitalize">WED - THU(8AM - 6PM)</a></li>
+              <li><a href="#" class="hover:text-black transition-colors text-sm capitalize">SUNDAY- CLOSED</a></li>
+              <h5 class="text-pink-500 text-sm">Visit our Salon & take your favourite beauty. </h5>
+            </ul>
+          </div>
+
+          
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-center lg:text-center">
+            <p class="text-sm text-black text-center capitalize">
+              &copy; 2026 emilia_shady. All rights reserved.
+            </p>
+           
+          </div>
+        </div>
+      </div>
+    </footer>
+
+      <script  src="story.js"></script>
+  </body>
+</html>

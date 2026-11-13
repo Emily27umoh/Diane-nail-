@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <title>Daine website</title>
+  <script src="https://kit.fontawesome.com/7a130faa77.js" crossorigin="anonymous"></script>
+</head>
+<style>
+  body{
+    width: 100%;
+    height: 100vh;    
+  }
+  @keyframes slideInLeft {
+    0%   { opacity: 0; transform: translateX(-80px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight {
+    0%   { opacity: 0; transform: translateX(80px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-left {
+    animation: slideInLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  .animate-slide-right {
+    animation: slideInRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  /*parallax*/
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes lineGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .anim-fade-up  { animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) forwards; opacity: 0; }
+  .anim-fade-in  { animation: fadeIn 1.2s ease forwards; opacity: 0; }
+  .anim-line     { animation: lineGrow 1s cubic-bezier(0.22,1,0.36,1) forwards; transform-origin: left; }
+  .delay-200  { animation-delay: 0.2s; }
+  .delay-400  { animation-delay: 0.4s; }
+  .delay-600  { animation-delay: 0.6s; }
+  .delay-800  { animation-delay: 0.8s; }
+  .delay-1000 { animation-delay: 1.0s; }
+  .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+  .font-jost      { font-family: 'Jost', sans-serif; }
+  .divider-line {height: 1px; background: linear-gradient(to right, transparent, rgba(244,194,194,0.6), transparent);}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  .image-track {animation: slide 25s linear infinite;}
+.image-track:hover {animation-play-state: paused;}
+  @keyframes slide {from {transform: translateX(0);} 
+    to {transform: translateX(-50%); }}
+
+</style>
+<body class="m-0 p-0 font-serif">
+    <div class="bg-[url('image/nailbanner.jpg')] bg-cover bg-center max-h-[400px] object-cover relative">
+        <div class="bg-black/50 min-h-[400px]">
+
+          <!-- Navbar -->
+          <nav class="flex items-center justify-between px-6 py-4 text-white sticky top-0 z-50 " id="navbar">
+
+            <h1 class="text-2xl font-bold tracking-wider scroll-animate">Diane Artistry</h1>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex gap-8 items-center text-sm font-medium">
+              <li><a href="index.html" class="nav-link scroll-animate uppercase font-semibold">Home</a></li>
+
+              <!-- About Dropdown -->
+              <li class="relative group">
+                <a href="about.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  About
+                </a>
+                <div class="dropdown absolute left-0 mt-3 w-44 bg-white border-2 border-pink-500 text-black rounded-2xl shadow-2xl py-4 px-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0">
+                  <a href="story.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase"> Our Story </a>
+                  <a href="team.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">why diane artistry</a>
+                  <a href="artist.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">artist and staff</a>
+                </div>
+              </li>
+
+              <li><a href="menu.html" class="nav-link scroll-animate uppercase font-semibold">Menu</a></li>
+
+              <!-- Services Dropdown -->
+              <li>
+                <a href="services.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  Services
+                </a>
+              </li>
+
+              <li><a href="gallery.html" class="nav-link scroll-animate uppercase font-semibold">Gallery</a></li>
+              <li><a href="booking.html" class="nav-link scroll-animate uppercase font-semibold">Booking</a></li>
+            </ul>
+
+            <button onclick="window.location.href='contact.html'" class="hidden md:block bg-pink-500 hover:bg-pink-600 px-6 py-3 rounded-full transition-all duration-300 font-semibold scroll-animate"> Contact Us</button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-3xl scroll-animate"> ☰ </button>
+          </nav>
+
+          <!-- Mobile Menu -->
+          <div id="mobileMenu" class="fixed inset-0 bg-black text-white z-50 hidden flex-col items-center justify-center space-y-8 text-2xl">
+            <button id="closeMenu" class="absolute top-8 right-8 text-4xl">&times;</button>
+            
+            <a href="index.html" class="hover:text-pink-400 transition">Home</a>
+            <li class="relative group">
+                <a href="about.html" class="nav-link flex items-center gap-1 scroll-animate uppercase font-semibold">
+                  About
+                </a>
+                <div class="dropdown absolute left-0 mt-3 w-54 bg-white border-2 border-pink-500 text-black rounded-2xl shadow-2xl py-4 px-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0">
+                  <a href="story.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase"> Our Story </a>
+                  <a href="team.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">why diane artistry</a>
+                  <a href="artist.html" class="block px-5 py-3 hover:bg-gray-100 rounded-xl uppercase font-medium">artist and staff</a>
+                </div>
+              </li>
+            <a href="menu.html" class="hover:text-pink-400 transition">Menu</a>
+                
+                <a href="services.html" class="hover:text-pink-400 transition">Services</a>
+            <a href="gallery.html" class="hover:text-pink-400 transition">Gallery</a>
+            <a href="booking.html" class="hover:text-pink-400 transition">Booking</a>
+            
+            <button onclick="window.location.href='contact.html'" class="mt-6 bg-pink-500 px-8 py-4 rounded-full text-lg"> Contact Us </button>
+          </div>
+
+          <section class="flex flex-col items-center justify-center text-center text-white h-[50vh] px-4">
+            <div class="wrapper text-white max-w-2xl">
+              <h2 class="text-3xl md:text-5xl font-bold mb-4 capitalize opacity-0 translate-y-10 fade-in">about diane_artistry</h2>
+            </div>
+          </section>
+        </div>
+    </div>
+
+    <!-----get nails done-->
+    <section class="getnails pb-20 pt-20">
+       <div class="max-w-7xl mx-auto px-4 py-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+            <div class="p-5 fade-in-left opacity-0 translate-x-[-80px] transition-all duration-1000 ease-out ">
+              <h6 class="text-sm font-serif text-gray-400 mb-2 uppercase">get your shine on</h6>
+              <h2 class="text-2xl font-bold text-gray-700 mb-4 uppercase">skilled nails art</h2>
+              <p class="text-gray-600 text-sm leading-relaxed">From classic manicures and pedicures to gel finishes and custom nail art, we tailor every treatment to your style using high-quality products and strict hygiene standards.</p>
+              <ul class="mt-5">
+                <li>Our nail services are designed to give you a flawless, long-lasting finish while ensuring the health of your natural nails. From classic manicures and relaxing pedicures to modern gel applications and custom nail art, we offer a wide range of treatments tailored to your personal style.</li><br>
+                <li>We use high-quality products and maintain strict hygiene standards to deliver a safe and luxurious experience every time. Whether you’re looking for a simple, elegant look or bold, creative designs, our skilled technicians are here to bring your vision to life with precision and care.</li>
+              </ul>
+            </div>
+            <div class=" p-4 fade-in-right opacity-0 translate-x-[80px] transition-all duration-1000 ease-out">
+              <img src="image/nails1.jpg" class="rounded-2xl" alt="nailpolish" >
+            </div>
+          </div>
+       </div>
+    </section>
+
+    <section class="choose-love pt-24 pb-24 bg-zinc-100">
+      <p class="choose-beauty text-center text-zinc-400 text-sm uppercase">choose the beauty</p>
+      <h1 class="text-pink-500 text-center text-4xl capitalize font-medium">peace, love and nails</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 py-12">
+        <div class="group relative rounded-xl overflow-hidden  hover:shadow-2xl transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="image/nail15.jpg" alt="Manicure & Pedicure" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Mani's &amp; Pedi's</h3>
+            <p class="text-gray-600 text-sm">Perfect nails for every occasion</p>
+            <div class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 flex justify-center">
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative  rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="image/nail19.jpg" alt="Acrylic & Gel" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Acrylic &amp; Gel's</h3>
+            <p class="text-gray-600 text-sm">Long-lasting beauty &amp; strength</p>
+            <div class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 flex justify-center"></div>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden  hover:shadow-2xl transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="image/nail13.jpg" alt="Add-on & Massages" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Add-on &amp; Massages</h3>
+            <p class="text-gray-600 text-sm">Relaxing treatments &amp; extras</p>
+            <div class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 flex justify-center"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Working Hours + Hero Section -->
+     <section class="py-16 px-6" style="width: 100%;">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <!-- Left Column: Hands & Feet -->
+          <div class="space-y-10">
+            <div class="fade-in-bottom opacity-0 translate-y-12 transition-all duration-700 ease-out">
+              <div>
+            <div class="flex items-center gap-3 mb-8 justify-center pt-12">
+              <h6 class="text-xl font-medium text-gray-500 text-center">TIME SCHEDULE</h6>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+              <table class="w-full">
+                <tbody class="divide-y divide-gray-100 text-gray-700">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-8 py-5 font-medium">Mon - Wed</td>
+                    <td class="px-8 py-5 text-right">10:00 AM - 9:00 PM</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-8 py-5 font-medium">Thursday</td>
+                    <td class="px-8 py-5 text-right">10:00 AM - 7:30 PM</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-8 py-5 font-medium">Friday</td>
+                    <td class="px-8 py-5 text-right">10:00 AM - 9:00 PM</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-8 py-5 font-medium">Sun - Sun</td>
+                    <td class="px-8 py-5 text-right">10:00 AM - 5:00 PM</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Add-On Services -->
+          <div class="space-y-10">
+            <div class="fade-in-bottom opacity-0 translate-y-12 transition-all duration-700 ease-out" style="transition-delay: 150ms;">
+              <div class="lg:pt-16">
+            
+                <h1 class="text-5xl lg:text-5xl font-bold text-pink-400 leading-tight mb-6">
+                  Working Hours
+                </h1>
+                <p class="text-gray-600 leading-relaxed text-justify text-sm max-w-lg">At Diane_Artistry Nail Salon, we understand that our clients have busy lifestyles and different schedules. That's why we offer flexible appointment times throughout the week to ensure you can enjoy professional nail care at your convenience. Whether you need a quick manicure during the week or a complete nail transformation before a special event, our team is ready to provide exceptional service in a comfortable and welcoming environment.We encourage clients to book appointments in advance to secure their preferred time slots, especially during weekends and holiday periods when demand is highest.</p>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </section>
+
+    <!--- parallax-->
+    <section class="relative w-full">
+      <div class="relative h-screen md:h-[9s0vh] overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('image/nail22.jpg');"> </div>
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <div class="text-center px-6 max-w-3xl mx-auto">
+            <div class="divider-line w-24 mx-auto mb-10">      
+            </div>
+            <h1 class="font-cormorant text-6xl md:text-7xl lg:text-8xl font-light text-white leading-[1.1] mb-4"> Nails are not just<br>beauty. </h1>
+            <h1 class="font-cormorant text-6xl md:text-7xl lg:text-8xl font-light italic text-pink-300 leading-[1.1] mb-10"> They are art. </h1>
+            <div class="divider-line w-16 mx-auto mb-10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-----testimonial-->
+    <section class="pt-32 pb-32">
+      <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+          <p class="text-pink-600 font-medium tracking-widest text-sm mb-2">TESTIMONIALS</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-zinc-800">What People Are Saying</h2>
+        </div>
+
+        <!-- Carousel -->
+        <div class="relative">
+          <div id="carousel" class="overflow-hidden">
+            <div id="slides" class="flex transition-transform duration-700 ease-out">
+
+              <!-- Slide 1: 3 Testimonials -->
+              <div class="min-w-full px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <!-- Testimonial Card -->
+                  <div class="bg-white rounded-3xl shadow-xl p-8 text-center h-full">
+                    <div class="text-5xl text-pink-200 mb-4">“</div>
+                    <p class="text-base leading-relaxed text-zinc-700 mb-6">
+                      Mauris donec magnis a sapien etiam sapien and congue augue egestas ultrices vitae purus velna integer tempor congue egestas a vitae purus.
+                    </p>
+                    <p class="font-semibold text-zinc-800">- KELLEY BAKER</p>
+                  </div>
+
+                  <div class="bg-white rounded-3xl shadow-xl p-8 text-center h-full">
+                    <div class="text-5xl text-pink-200 mb-4">“</div>
+                    <p class="text-base leading-relaxed text-zinc-700 mb-6">
+                      An augue cubilia laoreet magna sapien suscipit undo egestas magna ipsum ligula vitae a purus cubilia a blandit and auctor integer congue.
+                    </p>
+                    <p class="font-semibold text-zinc-800">- SARAH D.</p>
+                  </div>
+
+                  <div class="bg-white rounded-3xl shadow-xl p-8 text-center h-full">
+                    <div class="text-5xl text-pink-200 mb-4">“</div>
+                    <p class="text-base leading-relaxed text-zinc-700 mb-6">
+                      Augue egestas volutpat undo egestas augue in cubilia laoreet magna at primis libero undo suscipit luctus congue magna undo purus pretium.
+                    </p>
+                    <p class="font-semibold text-zinc-800">- NICOLE BYER</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2: Next 3 Testimonials -->
+              <div class="min-w-full px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div class="bg-white rounded-3xl shadow-xl p-8 text-center h-full">
+                    <div class="text-5xl text-pink-200 mb-4">“</div>
+                    <p class="text-base leading-relaxed text-zinc-700 mb-6">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                    </p>
+                    <p class="font-semibold text-zinc-800">- EMMA THOMPSON</p>
+                  </div>
+
+                  <div class="bg-white rounded-3xl shadow-xl p-8 text-center h-full">
+                    <div class="text-5xl text-pink-200 mb-4">“</div>
+                    <p class="text-base leading-relaxed text-zinc-700 mb-6">
+                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
+                    </p>
+                    <p class="font-semibold text-zinc-800">- MICHAEL CHEN</p>
+                  </div>
+
+                  <div class="bg-white rounded-3xl shadow-xl p-8 text-center h-full">
+                    <div class="text-5xl text-pink-200 mb-4">“</div>
+                    <p class="text-base leading-relaxed text-zinc-700 mb-6">
+                      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia.
+                    </p>
+                    <p class="font-semibold text-zinc-800">- SOPHIA RODRIGUEZ</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+    
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------footer-->
+    <footer class="bg-zinc-300 text-black">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5 text-center md:text-left">
+            <h1 class="text-2xl font-bold tracking-wider scroll-animate text-pink-500">Diane Artistry</h1>
+            <p class="text-gray-400 max-w-md mx-auto md:mx-0 uppercase text-sm pt-5 pb-5">stay in the know</p>
+            <div class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto md:mx-0">
+              <input type="email" placeholder="your@email.com" class="bg-pink-200 border border-pink-300 rounded-lg sm:rounded-r-none px-4 py-3 text-sm focus:outline-none focus:border-gray-200 w-full">
+              <button class="bg-gray-400 text-white hover:bg-gray-200 transition-colors px-6 py-3 rounded-lg sm:rounded-l-none font-medium whitespace-nowrap uppercase">book now 
+              </button>
+            </div>
+
+            <div class="flex justify-center md:justify-start gap-10 pt-5 mt-6 mx-auto max-w-sm">
+              <a href="#" class="group relative flex flex-col items-center">
+                <img src="icons/instagram (1).png"  class="w-[30px] h-[30px] transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <h5 class="absolute -top-8 text-sm font-medium text-black opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">diane_artistry</h5>
+              </a>
+
+              <a href="#" class="group relative flex flex-col items-center">
+                <img src="icons/tik-tok.png" class="w-[30px] h-[30px] transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                <h5 class="absolute -top-8 text-sm font-medium text-black opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">diane_artistry</h5>
+              </a>
+
+              <a href="#" class="group relative flex flex-col items-center">
+                <img src="icons/whatsapp.png" class="w-[30px] h-[30px] transition-all duration-300 group-hover:scale-110">
+                <h5 class="absolute -top-10 text-sm font-medium font-serif text-black opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">+234-908-599-5848 </h5>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 text-center md:text-left">
+            <h3 class="text-pink-500 font-semibold mb-5 text-lg capitalize">nail salon</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-black transition-colors">About Us</a></li>
+              <li><a href="#" class="hover:text-black transition-colors">menu</a></li>
+              <li><a href="#" class="hover:text-black transition-colors">Blog</a></li>
+              <li><a href="#" class="hover:text-black transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 text-center md:text-left">
+            <h3 class="text-pink-500 font-semibold mb-5 text-lg">Resources</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-black transition-colors capitalize">menicure</a></li>
+              <li><a href="#" class="hover:text-black transition-colors capitalize">pedicure</a></li>
+              <li><a href="#" class="hover:text-black transition-colors capitalize">nails treatment</a></li>
+              <li><a href="#" class="hover:text-black transition-colors capitalize">pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 text-center md:text-left">
+            <h3 class="text-pink-500 font-semibold mb-5 text-lg capitalize">opening hours</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-black transition-colors text-sm  capitalize">SAT - TUE(9AM - 7PM)</a></li>
+              <li><a href="#" class="hover:text-black transition-colors text-sm capitalize">WED - THU(8AM - 6PM)</a></li>
+              <li><a href="#" class="hover:text-black transition-colors text-sm capitalize">SUNDAY- CLOSED</a></li>
+              <h5 class="text-pink-500 text-sm">Visit our Salon & take your favourite beauty. </h5>
+            </ul>
+          </div>
+
+          
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-center lg:text-center">
+            <p class="text-sm text-black text-center capitalize">
+              &copy; 2026 emilia_shady. All rights reserved.
+            </p>
+           
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    
+
+  
+  
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+   
